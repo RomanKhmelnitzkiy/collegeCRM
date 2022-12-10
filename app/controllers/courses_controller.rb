@@ -75,7 +75,7 @@ class CoursesController < ApplicationController
   private
 
   def require_teacher
-    redirect_to (request.referer || root_path), alert: 'You are not authorized to perform this action' unless current_user.teacher? || current_user.admin?
+    redirect_to (request.referer || root_path), alert: 'You are not authorized to perform this action' unless current_user.teacher?
   end
 
   def require_owner_or_admin

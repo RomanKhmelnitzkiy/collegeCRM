@@ -3,8 +3,9 @@
 class Enrollment < ApplicationRecord
   belongs_to :user
   belongs_to :course
-  has_many :lessons, dependent: :restrict_with_error # works better with custom validator
-  # has_many :lessons
+  #has_many :lessons, dependent: :restrict_with_error # works better with custom validator
+  has_many :lessons
+  has_many :attendances, dependent: :destroy
 
   # user can not be enrolled to the same course twice
   validates :user_id, uniqueness: { scope: :course_id }

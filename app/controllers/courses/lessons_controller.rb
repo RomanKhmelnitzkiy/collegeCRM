@@ -18,6 +18,8 @@ module Courses
     def create
       @lesson = Lesson.new(lesson_params)
       @lesson.course = @course
+      @lesson.classroom_id = DEFAUTL_CLASSROOM_ID
+      @lesson.user_id = @course.user.id
 
       if @lesson.save
         redirect_to @course, notice: 'Lesson was successfully created.'
@@ -58,7 +60,7 @@ module Courses
     end
 
     def lesson_params
-      params.require(:lesson).permit(:user_id, :classroom_id, :course_id, :status, :start,
+      params.require(:lesson).permit(:course_id, :status, :start,
                                      attendances_attributes: %i[id user_id status _destroy])
     end
   end
